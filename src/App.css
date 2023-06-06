@@ -382,7 +382,7 @@ img:hover{
   cursor: pointer;
 }
 
-.photo2{
+/*.photo2{
   background-image: url(./Photo/image-product-2-thumbnail.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -391,9 +391,9 @@ img:hover{
   height: 100px;
   margin: 0 auto;
   cursor: pointer;
-}
+}*/
 
-.photo3{
+/*.photo3{
   background-image: url(./Photo/image-product-3-thumbnail.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -413,7 +413,7 @@ img:hover{
   height: 100px;
   margin: 0 auto;
   cursor: pointer;
-}
+}*/
 
 .photo1:hover,
 .photo2:hover,
@@ -448,99 +448,118 @@ img:hover{
   z-index: 10000;
 }
 
-.large-photo-block{
-  width: 600px;
-  height: 600px;
+.block-navigation{
+  width: 550px;
+  height: 60px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.large-photo{
-  background-image: url(./Photo/image-product-1.jpg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 500px;
-  height: 500px;
-  max-width: 800px;
-  max-height: 800px;
-  border-radius: 10px;
-}
-
-.block-arrows{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 500px;
-}
-
-.position-block-arrows{
-  width: 110%;
-  height: 50px;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
+  position: absolute;
 }
 
-.arrow-pre,
-.arrow-next{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
+.next{
+  height: 50px;
+  width: 50px;
   background-color: white;
   border-radius: 50%;
-  cursor: pointer;
+  margin-top: 5px;
 }
 
-.close{
-  margin-bottom: 15px;
-  position: relative;
-  left: 240px;
+.back{
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border-radius: 50%;
+  margin-top: 5px;
 }
 
+.large-photo-block{
+  height: 500px;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.large-gallery-photo{
-  width: 400px;
+.small-photo-block{
+  height: 100px;
+  width: 450px;
+  margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
-.photo1large{
-  background-image: url(./Photo/image-product-1-thumbnail.jpg);
-  width: 80px;
-  height: 80px;
-  background-position: center;
-  background-size: cover;
-  border-radius: 15px;
+.back-img{
+  background-color: white;
+  border-radius: 21px;
+  height: 100px;
 }
 
-.photo2large{
-  background-image: url(./Photo/image-product-2-thumbnail.jpg);
-  width: 80px;
-  height: 80px;
-  background-position: center;
-  background-size: cover;
-  border-radius: 15px;
+.small-photo-block img{
+  width: 100%;
+  height: 100px;
+  border-radius: 20px;
+  position: relative;
 }
 
-.photo3large{
-  background-image: url(./Photo/image-product-3-thumbnail.jpg);
-  width: 80px;
-  height: 80px;
-  background-position: center;
-  background-size: cover;
-  border-radius: 15px;
+.photo-sneakers{
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;
 }
 
-.photo4large{
-  background-image: url(./Photo/image-product-4-thumbnail.jpg);
-  width: 80px;
-  height: 80px;
-  background-position: center;
-  background-size: cover;
-  border-radius: 15px;
+.next{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 10;
+  margin-bottom: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}
+
+.next:hover{
+  transform: scale(1.2);
+  transition: all 0.5s;
+}
+
+.back{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 10;
+  margin-bottom: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}
+
+.back:hover{
+  transform: scale(1.2);
+  transition: all 0.5s;
+}
+
+.click-close{
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  transition: all 0.5s
+}
+
+.click-close img{
+  transition: all 0.5s;
+}
+
+.click-close img:hover{
+  transform: scale(1.5);
+  transition: all 0.5s;
 }

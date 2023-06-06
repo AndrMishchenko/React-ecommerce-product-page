@@ -8,6 +8,14 @@ import del from './Photo/delete.svg'
 import close from './Photo/close.svg'
 import next from './Photo/next.svg'
 import previos from './Photo/previous.svg'
+import photo1 from './Photo/imageProduct1Thumbnail.jpg'
+import photo2 from './Photo/imageProduct2Thumbnail.jpg'
+import photo3 from './Photo/imageProduct3Thumbnail.jpg'
+import photo4 from './Photo/imageProduct4Thumbnail.jpg'
+import largePhoto1 from './Photo/imageProduct1.jpg'
+import largePhoto2 from './Photo/imageProduct2.jpg'
+import largePhoto3 from './Photo/imageProduct3.jpg'
+import largePhoto4 from './Photo/imageProduct4.jpg'
 
 function App() {
 
@@ -24,6 +32,14 @@ function App() {
   const [saveInfo, setSaveInfo] = useState('')
   
   const [showLargePhoto, setShowLargePhoto] = useState(false);
+
+  const photoMagazine = [photo1, photo2, photo3, photo4];
+  const largePhotoMagazine = [largePhoto1, largePhoto2, largePhoto3, largePhoto4]
+
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [currentPhotoLargeIndex, setCurrentPhotoLargeIndex] = useState(0);
+
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
 
   const getCart =() => {
     if(basket){
@@ -68,23 +84,32 @@ function App() {
     }
   }
 
-  const view = () => {
-    if(showLargePhoto === false){
+  const view = (e) => {
+    if (showLargePhoto === false) {
+      const selectedIndex = e.target.dataset.index; // получить индекс выбранного фото
+      setCurrentPhotoLargeIndex(parseInt(selectedIndex)); // установить индекс в состояние
+      setSelectedPhotoIndex(parseInt(selectedIndex));
       setShowLargePhoto(true);
-    }else{
-      setShowLargePhoto(false)
-    }    
+    } else {
+      setShowLargePhoto(false);
+    }
   };
 
   const prevImg = (e) => {
     e.stopPropagation();
-    console.log('hi')
+    const newIndex = (currentPhotoLargeIndex - 1 + largePhotoMagazine.length) % largePhotoMagazine.length;
+    const newIndeX = (currentPhotoIndex - 1 + photoMagazine.length) % photoMagazine.length;
+    setCurrentPhotoLargeIndex(newIndex);
+    setCurrentPhotoIndex(newIndeX);
   }
 
   const nextImg = (e) => {
     e.stopPropagation();
-    console.log('hiiiiii')
-  }
+    const newIndex = (currentPhotoLargeIndex + 1 + largePhotoMagazine.length) % largePhotoMagazine.length;
+    const newIndeX = (currentPhotoIndex + 1 + photoMagazine.length) % photoMagazine.length;
+    setCurrentPhotoLargeIndex(newIndex);
+    setCurrentPhotoIndex(newIndeX);
+  };
 
   return (
     <>
@@ -159,38 +184,50 @@ function App() {
               <div className='wrapper-img'>
                 <div className='main-photo'></div>
                 <div className='gallery-photo'>
-                  <div className='photo1' onClick={view}></div>
+                  {photoMagazine.map((photoSmall, index) => (
+                    <img
+                      className='photo1'
+                      onClick={view}
+                      src={photoSmall}
+                      data-index={index} // добавлен атрибут data-index
+                    ></img>
+                  ))}
                     {showLargePhoto && (
-                      <div className='large-photo-overlay' onClick={view}>
-                          <div className='large-photo-block'>
-                            <img src={close} onClick={view} className='close'></img>
-                            <div className='large-photo'>
-                              <div className='block-arrows'>
-                                <div className='position-block-arrows'>
-                                  <div className='arrow-pre' onClick={prevImg}>
-                                    <img src={previos}></img>
-                                  </div>
-                                  <div className='arrow-next'>
-                                    <img src={next} onClick={nextImg}></img>
-                                  </div>
-                                </div>
-                              </div>
-
+                      <div className='large-photo-overlay'>
+                        <div className='click-close' onClick={view}>
+                          <img src={close}></img>
+                        </div>
+                        <div className='large-photo-block'>
+                          <img 
+                            src={largePhotoMagazine[currentPhotoLargeIndex]} 
+                            alt='Large Photo'
+                            className='photo-sneakers'
+                          />
+                          <div className='block-navigation'>
+                            <div className='back' onClick={prevImg}>
+                              <img 
+                                src={previos}
+                              ></img>
                             </div>
-                            
+                            <div className='next' onClick={nextImg}>
+                              <img 
+                                src={next}
+                              ></img>
+                            </div>
                           </div>
-                          <div className='large-gallery-photo'>
-                            <div className='photo1large'></div>
-                            <div className='photo2large'></div>
-                            <div className='photo3large'></div>
-                            <div className='photo4large'></div>
-                          </div>
-                        
+                        </div>
+
+                        <div className='small-photo-block'>
+                            {photoMagazine.map((photo, index) => (
+                               <div className={`back-img ${index === selectedPhotoIndex ? 'selected' : ''}`}>
+                                <img
+                                  src={photo}
+                                ></img>
+                              </div>
+                            ))}                          
+                        </div>
                       </div>
                     )}
-                  <div className='photo2'></div>
-                  <div className='photo3'></div>
-                  <div className='photo4'></div>
                 </div>
               </div>
 
